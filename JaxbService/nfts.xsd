@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="NonEmptyStringType">
+      <xs:restriction base="xs:string">
+        <!--must have at least one non white space character-->
+        <!--[\S] mathces non white space characters-->
+        <xs:pattern value=".*[\S]+.*"/>
+        <!--collapse all whitespace characters to a single space-->
+        <xs:whiteSpace value="collapse"/>
+      </xs:restriction>
+    </xs:simpleType>
+  
+    <xs:simpleType name="PositiveDoubleType">
+      <xs:restriction base="xs:double">
+        <xs:minInclusive value="1"/>
+      </xs:restriction>
+    </xs:simpleType>
+  
+    <xs:simpleType name="DateTimeType">
+      <xs:restriction base="xs:dateTime">
+        <xs:minInclusive value="1970-01-01T12:00:00"/>
+      </xs:restriction>
+    </xs:simpleType>
+  
+    <xs:complexType name="CollectionType">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Name" type="NonEmptyStringType"></xs:element>
+          <xs:element name="Url" type="NonEmptyStringType"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+  
+    <xs:complexType name="NftType">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Name" type="NonEmptyStringType"></xs:element>
+            <xs:element name="Url" type="NonEmptyStringType"></xs:element>
+            <xs:element name="DateTimeSold" type="DateTimeType"></xs:element>
+            <xs:element name="PriceUsd" type="PositiveDoubleType"></xs:element>
+            <xs:element name="Collection" type="CollectionType"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+	  <xs:element name="ArrayOfNft">
+		  <xs:complexType>
+		    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+			    <xs:element name="Nft" type="NftType"></xs:element>
+		    </xs:sequence>
+		  </xs:complexType>
+	  </xs:element>
+</xs:schema>

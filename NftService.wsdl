@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="FilterNfts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="collectionName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FilterNftsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FilterNftsResult" type="tns:ArrayOfNft" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfNft">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Nft" nillable="true" type="tns:Nft" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Nft">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTimeSold" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceUsd" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Collection" type="tns:Collection" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Collection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="FilterNftsSoapIn">
+    <wsdl:part name="parameters" element="tns:FilterNfts" />
+  </wsdl:message>
+  <wsdl:message name="FilterNftsSoapOut">
+    <wsdl:part name="parameters" element="tns:FilterNftsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="NftServiceSoap">
+    <wsdl:operation name="FilterNfts">
+      <wsdl:input message="tns:FilterNftsSoapIn" />
+      <wsdl:output message="tns:FilterNftsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NftServiceSoap" type="tns:NftServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FilterNfts">
+      <soap:operation soapAction="http://tempuri.org/FilterNfts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NftServiceSoap12" type="tns:NftServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FilterNfts">
+      <soap12:operation soapAction="http://tempuri.org/FilterNfts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NftService">
+    <wsdl:port name="NftServiceSoap" binding="tns:NftServiceSoap">
+      <soap:address location="https://localhost:44300/NftService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="NftServiceSoap12" binding="tns:NftServiceSoap12">
+      <soap12:address location="https://localhost:44300/NftService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

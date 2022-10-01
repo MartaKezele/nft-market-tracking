@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="DatumTerminType">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="Datum" type="xs:string"></xs:element>
+			<xs:element name="Termin" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PodatciType">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="Temp" type="xs:string"></xs:element>
+			<xs:element name="Vlaga" type="xs:string"></xs:element>
+			<xs:element name="Tlak" type="xs:string"></xs:element>
+			<xs:element name="TlakTend" type="xs:string"></xs:element>
+			<xs:element name="VjetarSmjer" type="xs:string"></xs:element>
+			<xs:element name="VjetarBrzina" type="xs:string"></xs:element>
+			<xs:element name="Vrijeme" type="xs:string"></xs:element>
+			<xs:element name="VrijemeZnak" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="GradType">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="GradIme" type="xs:string"></xs:element>
+			<xs:element name="Lat" type="xs:string"></xs:element>
+			<xs:element name="Lon" type="xs:string"></xs:element>
+			<xs:element name="Podatci" type="PodatciType"></xs:element>
+		</xs:sequence>
+    <xs:attribute name="autom" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="GradoviType">
+    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="Grad" type="GradType"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Hrvatska">
+    <xs:complexType>
+      <xs:choice minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="DatumTermin" type="DatumTerminType"></xs:element>
+        <xs:element name="Grad" type="GradType"></xs:element>
+      </xs:choice>
+    </xs:complexType>
+	</xs:element>
+</xs:schema>

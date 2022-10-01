@@ -1,0 +1,75 @@
+﻿@model IEnumerable<NftClientApp.Models.NftJson>
+
+@{
+    ViewBag.Title = "Top NFTS this week";
+}
+
+<div class="text-center">
+    <h1 class="display-4 mb-4">Top NFTS this week</h1>
+    @{
+        if (ViewBag.Success == false)
+        {
+            <p class="alert-danger">@ViewBag.Response</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NftName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NftUrl)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CollectionName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CollectionUrl)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NftName)
+                            </td>
+                            <td>
+                                <a href="@item.NftUrl">
+                                    @item.NftName
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CollectionName)
+                            </td>
+                            <td>
+                                <a href="@item.CollectionUrl">
+                                    @item.CollectionName
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+    <div>
+        <a asp-controller="Home" asp-action="Index">Back</a>
+    </div>
+</div>
+

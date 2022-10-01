@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Validate RNG";
+}
+
+<div class="text-center">
+    <h1 class="display-4 mb-4">Validate RNG</h1>
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4">
+            <form asp-action="ValidateRng">
+                @{
+                    Html.RenderPartial("CreatePartial");
+                }
+                <div class="form-group my-4">
+                    <input type="submit" value="Validate" class="btn btn-primary" />
+                </div>
+                @{
+                    string classes = ViewBag.Success == true ? "alert-success" : "alert-danger";
+                    if (ViewBag.Response != null)
+                    {
+                        <p class=@classes>@ViewBag.Response</p>
+                    }
+                }
+            </form>
+        </div>
+    </div>
+    <div>
+        <a asp-controller="Home" asp-action="Index">Back</a>
+    </div>
+</div>

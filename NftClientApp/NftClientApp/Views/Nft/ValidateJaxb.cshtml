@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "JAXB validation";
+}
+
+<div class="text-center">
+    <h1 class="display-4 mb-4">Validate with JAXB</h1>
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4">
+            <form asp-action="ValidateJaxb">
+                <div class="form-group my-4">
+                    <input type="submit" value="Validate with JAXB" class="btn btn-primary" />
+                </div>
+                @{
+                    string classes = ViewBag.Success == true ? "alert-success" : "alert-danger";
+                    if (ViewBag.Response != null)
+                    {
+                        <p class=@classes>@ViewBag.Response</p>
+                    }
+                }
+            </form>
+        </div>
+    </div>
+    <div>
+        <a asp-controller="Home" asp-action="Index">Back</a>
+    </div>
+</div>
+

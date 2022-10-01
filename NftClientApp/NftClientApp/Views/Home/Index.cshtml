@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4 mb-4">Welcome</h1>
+    <ul class="ul-no-decoration">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Nft" asp-action="ValidateXsd">Validate XSD</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Nft" asp-action="ValidateRng">Validate RNG</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Nft" asp-action="List">NFTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Nft" asp-action="FilterNfts">Filter NFTs by collection</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Nft" asp-action="ValidateJaxb">Validate JAXB</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Weather" asp-action="CityTemp">Get city temperature</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Nft" asp-action="TopNftsThisWeek">Top NFTS this week</a>
+        </li>
+    </ul>
+</div>
