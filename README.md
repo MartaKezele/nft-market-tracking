@@ -8,3 +8,6 @@ Featuring:
 - JAXB
 - XML RPC
 - ASP.NET MVC
+
+Using:
+- [NFT sales api](https://rapidapi.com/NovusAPI/api/top-nft-sales/)
